@@ -15,5 +15,13 @@
     "mongodb": "^2.2.30",
     "mongoose": "^4.10.4",
     "node-correios": "^2.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dkreider/student-tracker"
+  },
+  "bugs": {
+    "url": "https://github.com/dkreider/student-tracker/issues"
+  },
+  "homepage": "https://github.com/dkreider/student-tracker#student-tracker"
 }

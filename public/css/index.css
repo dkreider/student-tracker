@@ -1,0 +1,58 @@
+#logo {
+    padding-left: 30px;
+}
+
+#list {
+    height: 840px;
+    overflow: scroll;
+}
+
+#editStudent {
+    margin-left: 10px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#studentGrades {
+
+    margin-top: 15px;
+    text-align: center;
+    
+}
+
+#delete {
+
+    background-color: #e85353;
+
+}
+
+#notes {
+    height: 100px;
+}
+
+#progressBar {
+    display: none;
+}
+
+#previousCourse {
+
+    margin-top: 35px;
+
+}
+
+    #addCourse {
+
+    margin-top: 35px;
+
+}
+
+input {
+
+    margin-top: -10px !important;
+    margin-bottom: -5px !important;
+}
+
+textarea {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}

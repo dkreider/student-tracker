@@ -1,0 +1,234 @@
+<!doctype html>
+<html ng-app="studentTracker">
+    <head>
+        <title>Student Tracker</title>
+        <link rel="icon" href="img/icon.jpeg">
+
+        <!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="css/materialize.min.css">
+        <link href="fonts/materialicons.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/index.css"> 
+    </head>
+
+    <nav>
+        <div class="nav-wrapper blue">
+          <a href="/" class="brand-logo" id="logo">Student Tracker</a>
+          <ul class="right hide-on-med-and-down">
+            <li class="active"><a href="index.html"><i class="material-icons left">perm_identity</i>Students</a></li>
+            <li><a href="courses.html"><i class="material-icons left">assignment</i>Courses</a></li>
+            <li><a href=""><i class="material-icons left">query_builder</i>Reports</a></li>
+            <li><a href="#help"><i class="material-icons left">live_help</i>Help</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <body ng-controller="studentCtrl">
+
+
+        <div class="row">
+
+        <div class="col s2">
+
+            <div class="input-field">
+                <input type="text" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="search()">
+            </div><br>
+
+            <div class="collection" id="list" ng-repeat="student in searchResults track by student._id">
+                <a href="#" class="collection-item" ng-click="loadStudent(student.studentId)">{{student.name}}</a>
+            </div>
+                          
+        </div>
+
+        <div class="col s5" id="editStudent">
+
+            <form>
+
+              <h5>Student Details</h5>
+
+              <div class="row">
+
+                <div class="input-field col s2">
+                    <input placeholder="Student ID" type="text" class="validate" ng-model="studentId" ng-keyup="$event.keyCode === 13 && loadStudent(studentId)">
+                </div>
+
+                <div class="input-field col s10">
+                    <input placeholder="Complete Name" type="text" class="validate" ng-model="name" id="name">
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Prisoner ID" type="number" ng-model="prisonerId" class="validate">
+                </div>
+
+                <div class="input-field col s3">
+                    <input placeholder="Raio" type="number" ng-model="wing">
+                </div>
+
+                <div class="input-field col s3">
+                    <input placeholder="Cela" type="number" ng-model="cell">
+                </div>
+
+                <div class="input-field col s12">
+                    <input placeholder="Address 1" type="text" class="validate" ng-model="address1">
+                </div>
+
+                <div class="input-field col s12">
+                    <input placeholder="Address 2" type="text" ng-model="address2">
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="City" type="text" ng-model="city">
+                </div>
+
+                <div class="input-field col s2">
+                    <input placeholder="State" type="text" ng-model="state">
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Zip" type="text" ng-model="zip" ng-keyup="$event.keyCode === 13 && loadAddressInfo()">
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Date enrolled" type="date" datetime="yyyy-MM-dd" class="datepicker" ng-model="enrolled" value="{{enrolled | date : 'yyyy-MM-dd'}}"/>
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Date last heard" type="date" class="datepicker" ng-model="lastHeard" value="{{lastHeard | date : 'yyyy-MM-dd'}}" />
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Email" type="email" name="email" class="validate" ng-model="email">
+                </div>
+
+                <div class="input-field col s6">
+                    <input placeholder="Religion" type="text" class="validate" ng-model="religion">
+                </div>
+
+                <div class="input-field col s12">
+                    <textarea placeholder="Notes" class="materialize-textarea" data-length="180" ng-model="notes"></textarea>
+                </div>
+
+                <div class="input-field col s3">
+                    <a class="waves-effect waves-light btn blue" ng-click="saveStudent()">Save</a>
+                </div>
+
+                 <div class="input-field col s3">
+                    <a class="waves-effect waves-red btn blue" ng-click="deleteStudent()">Delete</a>
+                </div>
+
+                <div class="input-field col s3">
+                    <a class="waves-effect waves-light btn blue" ng-click="clearData()">Clear</a>
+                </div>
+
+                <div class="input-field col s3">
+                    <a class="waves-effect waves-light btn blue" ng-click="copyAddress()">Copy</a>
+                </div>
+
+              </div>
+
+            </form>
+
+        </div>
+
+        <div class="col s4" id="studentGrades">
+
+                <h5>Courses</h5>
+                <div class="input-field">
+                    <select data-ng-model="currentCourse" class="browser-default" ng-change="loadCourseGrades(currentCourse)">
+                        <option ng-repeat="course in courses track by $index" ng-value="course">{{course}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[0]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[1]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[2]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[3]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[4]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[5]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[6]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[7]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[8]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[9]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number"ng-model="selectedCourseGrades[10]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[11]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[12]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[13]">
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" ng-model="selectedCourseGrades[14]">
+                </div>
+
+                <!-- Add Course Modal -->
+                <div ng-controller="loadCourses">
+                    <div class="col s12">
+                        <a class="waves-effect waves-light btn modal-trigger blue" id="addCourse" href="#addCourse" ng-click="loadCourses()">Add course</a>
+                    </div>
+                    <div id="addCourse" class="modal">
+                        <div class="modal-content">
+                            <h4>Add a new course to student's record</h4>
+                            <select data-ng-model="course" class="browser-default">
+                                <option ng-repeat="course in availableCourses track by $index" ng-value="course.name">{{course.name}}</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addCourse(course)">Save</a>
+                            <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <a class="waves-effect waves-light btn blue" style="margin-top: 15px">Print Certificate</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+     <!-- Angular and jQuery -->
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/controllers/students.js"></script>
+    <script type="text/javascript" src="js/services/grades.js"></script>
+    <script type="text/javascript" src="js/controllers/loadCourses.js"></script>
+
+    <!-- clipboardjs.com -->
+    <script src="js/angular-clipboard/angular-clipboard.js"></script>
+    
+    <!-- Compiled and minified JavaScript -->
+	<script src="js/materialize/materialize.min.js"></script>
+
+    <!-- Custom CSS -->
+    <script type="text/javascript" src="js/custom.js"></script>
+
+    </body>
+
+</html>

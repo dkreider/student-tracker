@@ -1,0 +1,19 @@
+{
+  "name": "student-tracker",
+  "version": "3.0.0",
+  "description": "A Single-Page-Webapp used to track students and their grades",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Daniel Kreider",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.10.4",
+    "node-correios": "^2.1.1"
+  }
+}

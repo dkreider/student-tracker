@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="studentTracker">
+    <head>
+
+        <title>Student Tracker</title>
+		<link rel="icon" href="img/icon.jpeg">
+        <!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="css/materialize.min.css">
+        <link href="fonts/materialicons.css" rel="stylesheet">
+		<link href="css/courses.css" rel="stylesheet">
+        
+    </head>
+
+    <nav>
+        <div class="nav-wrapper blue">
+          <a href="/" class="brand-logo" id="logo">Student Tracker</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html"><i class="material-icons left">perm_identity</i>Students</a></li>
+            <li class="active"><a href="courses.html"><i class="material-icons left">assignment</i>Courses</a></li>
+            <li><a href=""><i class="material-icons left">query_builder</i>Reports</a></li>
+            <li onclick="showHelp()"><a href="#help"><i class="material-icons left">live_help</i>Help</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <body>
+
+    	<div ng-controller="coursesCtrl">
+
+    		<div class="row">
+
+				<div class="col s3" style="margin-top: 30px">
+
+					<div class="input-field">
+						<input type="text" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="searchCourses()">
+					</div>
+
+					<div class="collection" id="list" ng-repeat="course in searchResults track by $index">
+						<a href="#" class="collection-item" ng-click="loadCourse(course.courseId)">{{course.name}}</a>
+					</div>
+								
+				</div>
+    			
+    			<form class="col s9">
+
+    				<div class="row">
+
+    					<div class="input-field col s2">
+	    					<input placeholder="Course ID" type="text" class="validate" ng-model="courseId" ng-keyup="$event.keyCode === 13 && loadCourse(courseId)">
+	    				</div>
+
+    					<div class="input-field col s6">
+	    					<input placeholder="Course Name" type="text" class="validate" ng-model="name">
+	    				</div>
+
+	    				<div class="input-field col s2">
+	    					<input placeholder="Test amount" type="number" class="validate" ng-model="numberOfTests">
+	    				</div>
+
+	    				<div class="input-field col s10">
+	    					<textarea placeholder="Description" class="materialize-textarea" ng-model="description"></textarea>	    					
+	    				</div>
+
+	    				<div class="input-field col s10">
+	    					 <a class="waves-effect waves-light btn blue" ng-click="saveCourse()">Save</a>
+	    					 <a class="waves-effect waves-red btn blue" ng-click="deleteCourse()">Delete</a>
+							 <a class="waves-effect waves-light btn blue" ng-click="clearFields()">Clear</a>
+	    				</div>
+
+    				</div>
+    				
+    			</form>
+
+    		</div>
+    		
+    	</div>
+
+		<!-- Angular and jQuery -->
+		<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="js/angular/angular.min.js"></script>
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="js/materialize/materialize.min.js"></script>
+
+		<!-- AngularJS Controller -->
+		<script type="text/javascript" src="js/controllers/courses.js"></script>
+
+    </body>
+
+</html>

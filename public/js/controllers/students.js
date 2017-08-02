@@ -4,6 +4,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, grad
 
     $scope.selectedCourseGrades = []; // Used to store the grades of the selected course.
     $scope.newGrades            = []; // Used to store the new grade objects to be saved.
+    $scope.courses              = []; // Used to store student's courses.
+    $scope.grades               = []; // Used to store student's grades.
 
     angular.element(document).ready(function() {
 

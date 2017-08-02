@@ -1,6 +1,6 @@
 var studentTracker = angular.module("studentTracker", ['angular-clipboard']);
 
-studentTracker.controller("studentCtrl", function($scope, $http, clipboard, gradeManager) {
+studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     $scope.selectedCourseGrades = []; // Used to store the grades of the selected course.
     $scope.newGrades            = []; // Used to store the new grade objects to be saved.
@@ -10,6 +10,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, grad
     angular.element(document).ready(function() {
 
         $scope.loadNewestStudentId();
+        $scope.enrolled = new Date();
+        $scope.lastHeard = new Date();
 
     });
 

@@ -2,11 +2,6 @@
     padding-left: 30px;
 }
 
-#list {
-    height: 840px;
-    overflow: scroll;
-}
-
 #editStudent {
     margin-left: 10px;
     margin-top: 15px;

@@ -386,7 +386,6 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
                 } else {
 
                     $scope.searchResults = response.data;
-                    console.log(response.data);
 
                 }
 

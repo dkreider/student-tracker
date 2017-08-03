@@ -26,7 +26,6 @@
 
     <body ng-controller="studentCtrl">
 
-
         <div class="row">
 
         <div class="col s2">
@@ -35,7 +34,7 @@
                 <input type="text" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="search()">
             </div><br>
 
-            <div class="collection" id="list" ng-repeat="student in searchResults track by student._id">
+            <div class="collection" ng-repeat="student in searchResults track by student._id">
                 <a href="#" class="collection-item" ng-click="loadStudent(student.studentId)">{{student.name}}</a>
             </div>
                           

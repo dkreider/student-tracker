@@ -12,7 +12,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         $scope.loadNewestStudentId();
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
-        $scope.status = "Canidate";
+        $scope.status = "Candidate";
 
     });
 

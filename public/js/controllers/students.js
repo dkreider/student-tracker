@@ -391,8 +391,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
             }, function errorCallBack(response) {
 
-                Materialize.toast(response.data.error, 2000);
-                console.log(response);
+                console.log(response.data);
 
             });        
 

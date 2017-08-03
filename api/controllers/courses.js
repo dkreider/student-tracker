@@ -112,7 +112,7 @@ module.exports.saveCourse = function(req, res) {
 
                     name: req.body.name,
                     numberOfTests: req.body.numberOfTests,
-                    description: description
+                    description: req.body.description
 
                 }, function(err, course) {
 

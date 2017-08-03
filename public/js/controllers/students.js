@@ -18,7 +18,16 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     $scope.addCourse = function(courseName) {
 
-        console.log("Adding course " + courseName);
+        for (var i = 0; i < $scope.courses.length; i++) {
+
+            if ($scope.courses[i] == courseName) {
+
+                Materialize.toast("You are not allowed the assign the same course to a student twice!", 3000);
+                return;
+            }
+
+        }
+
         $scope.courses.unshift(courseName);
         $scope.currentCourse = courseName;
         $scope.selectedCourseGrades = [];

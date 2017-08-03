@@ -12,6 +12,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         $scope.loadNewestStudentId();
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
+        $scope.status = "Canidate";
 
     });
 
@@ -79,6 +80,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
                     $scope.zip = response.data.zip;
                     $scope.enrolled = new Date(response.data.enrolled);
                     $scope.lastHeard = new Date(response.data.lastHeard);
+                    $scope.status = response.data.status;
                     $scope.email = response.data.email;
                     $scope.religion = response.data.religion;
                     $scope.notes = response.data.notes;
@@ -145,6 +147,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         $scope.zip = "";
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
+        $scope.status = "Canidate";
         $scope.email = "";
         $scope.religion = "";
         $scope.notes = "";
@@ -272,6 +275,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
                         zip:$scope.zip,
                         enrolled:$scope.enrolled,
                         lastHeard:$scope.lastHeard,
+                        status:$scope.status,
                         email:$scope.email,
                         religion:$scope.religion,
                         notes:$scope.notes,

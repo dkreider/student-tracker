@@ -24,9 +24,9 @@ var studentSchema = new mongoose.Schema({
     zip : String,
     enrolled : Date,
     lastHeard : Date,
+    status : String,
     email : String,
     religion: String,
-    status : Boolean,
     notes : String,
 
     courses : [String],

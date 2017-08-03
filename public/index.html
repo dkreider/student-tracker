@@ -89,12 +89,21 @@
                     <input placeholder="Zip" type="text" ng-model="zip" ng-keyup="$event.keyCode === 13 && loadAddressInfo()">
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                     <input placeholder="Date enrolled" type="date" datetime="yyyy-MM-dd" class="datepicker" ng-model="enrolled" value="{{enrolled | date : 'yyyy-MM-dd'}}"/>
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                     <input placeholder="Date last heard" type="date" class="datepicker" ng-model="lastHeard" value="{{lastHeard | date : 'yyyy-MM-dd'}}" />
+                </div>
+
+                <div class="input-field col s4">
+                    <select data-ng-model="status" class="browser-default">
+                        <option>Active</option>
+                        <option>Canidate</option>
+                        <option>Inactive</option>
+                        <option>Graduate</option>
+                    </select>
                 </div>
 
                 <div class="input-field col s6">

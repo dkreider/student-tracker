@@ -42,6 +42,8 @@ module.exports.loadStudent = function(req, res) {
 
 module.exports.saveStudent = function(req, res) {
 
+    console.log(req.body.status);
+
     Student.findOne({"studentId":req.body.studentId}, function(err, student) {
 
         if (err) {
@@ -67,6 +69,7 @@ module.exports.saveStudent = function(req, res) {
                 zip : req.body.zip,
                 enrolled : req.body.enrolled,
                 lastHeard : req.body.lastHeard,
+                status: req.body.status,
                 email: req.body.email,
                 religion: req.body.religion,
                 notes: req.body.notes,
@@ -112,6 +115,7 @@ module.exports.saveStudent = function(req, res) {
                     zip : req.body.zip,
                     enrolled : req.body.enrolled,
                     lastHeard : req.body.lastHeard,
+                    status : req.body.status,
                     email: req.body.email,
                     religion: req.body.religion,
                     notes: req.body.notes,

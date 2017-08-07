@@ -31,7 +31,7 @@
         <div class="col s2">
 
             <div class="input-field">
-                <input type="text" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="search()">
+                <input type="text" id="search" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="search()">
             </div><br>
 
             <div class="collection" ng-repeat="student in searchResults track by student._id">
@@ -222,6 +222,25 @@
                     </div>
                 </div>
 
+                <!-- Help Modal -->
+                <div id="help" class="modal">
+                    <div class="modal-content">
+                        <h5>Keyboard shortcuts</h5>
+                        <ul>
+                            <li><strong>Shift + B</strong> - Go back one student.</li>
+                            <li><strong>Shift + F</strong> - Go forward one student.</li>
+                            <li><strong>Shift + L</strong> - Load previous student.</li>
+                            <li><strong>Shift + N</strong> - Clear current screen.</li>
+                            <li><strong>F9</strong> - Save currently loaded student.</li>
+                            <li><strong>F8</strong> - Delete currently loaded student.</li>
+                            <li><strong>F6</strong> - Intiate search.</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -233,6 +252,9 @@
     <script type="text/javascript" src="js/angular/angular.min.js"></script>
     <script type="text/javascript" src="js/controllers/students.js"></script>
     <script type="text/javascript" src="js/controllers/loadCourses.js"></script>
+
+    <!-- KeyPress https://dmauro.github.io/Keypress/ -->
+    <script type="text/javascript" src="js/keypress/keypress.min.js"></script>    
 
     <!-- clipboardjs.com -->
     <script src="js/angular-clipboard/angular-clipboard.js"></script>

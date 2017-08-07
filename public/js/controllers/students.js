@@ -6,6 +6,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
     $scope.newGrades            = []; // Used to store the new grade objects to be saved.
     $scope.courses              = []; // Used to store student's courses.
     $scope.grades               = []; // Used to store student's grades.
+    $scope.lastStudent          = 0;  // Used to store last student loaded.    
 
     angular.element(document).ready(function() {
 
@@ -13,6 +14,60 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
         $scope.status = "Candidate";
+
+        // Register our keyboard shortcuts.
+        var listener = new window.keypress.Listener();
+
+        // Go back a student.
+        listener.simple_combo("shift b", function() {
+
+            var studentId = --$scope.studentId;
+            $scope.loadStudent(studentId);
+
+        });
+
+        // Go forward a student.
+        listener.simple_combo("shift f", function() {
+
+            var studentId = ++$scope.studentId;
+            $scope.loadStudent(studentId);
+
+        });
+
+        // Load previously loaded student.
+        listener.simple_combo("shift l", function() {
+
+            $scope.loadStudent($scope.lastStudent);
+
+        });
+
+        // Clear screen.
+        listener.simple_combo("shift n", function() {
+
+            $scope.clearData();
+
+        });
+
+        // Save student.
+        listener.simple_combo("f9", function() {
+
+            $scope.saveStudent();
+
+        });
+
+        // Delete student. 
+        listener.simple_combo("f8", function() {
+
+            $scope.deleteStudent();
+
+        });
+
+        // Select search field.
+        listener.simple_combo("f6", function() {
+
+            $("#search").focus().select();
+
+        });
 
     });
 
@@ -145,6 +200,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     $scope.clearData = function() {
 
+        $scope.lastStudent = $scope.studentId;
         $scope.name = "";
         $scope.prisonerId = "";
         $scope.wing = "";

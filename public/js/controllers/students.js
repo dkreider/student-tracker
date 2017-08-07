@@ -260,11 +260,17 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
             }   
 
             $scope.studentId = parseInt($scope.studentId);
-            $scope.prisonerId = parseInt($scope.prisonerId);
             $scope.wing = parseInt($scope.wing);
             $scope.cell = parseInt($scope.cell);
             $scope.enrolled = new Date($scope.enrolled);
             $scope.lastHeard = new Date($scope.lastHeard);
+
+            if ($scope.prisonerId && $scope.prisonerId.length == 6) {
+
+                var prisonerId = $scope.prisonerId;
+                $scope.prisonerId = prisonerId.slice(0, 3) + "-" + prisonerId.slice(3);
+
+            }
 
             $http({
 

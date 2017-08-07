@@ -14,7 +14,7 @@ var studentSchema = new mongoose.Schema({
         required : true
     },
 
-    prisonerId : Number,
+    prisonerId : String,
     wing : Number,
     cell : Number,
     address1 : String,

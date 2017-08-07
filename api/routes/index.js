@@ -4,6 +4,7 @@ var router = express.Router();
 var ctrlStudent = require("../controllers/student");
 var ctrlCourses = require("../controllers/courses");
 var ctrlAddress = require("../controllers/address");
+var ctrlReports = require("../controllers/reports");
 
 router
     .route("/student")
@@ -36,5 +37,9 @@ router
 router
     .route("/getAddressInfo")
     .get(ctrlAddress.loadAddressInfo);
+
+router
+    .route("/reports")
+    .get(ctrlReports.getStats);
 
 module.exports = router;

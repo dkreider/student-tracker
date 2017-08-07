@@ -110,7 +110,14 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="Religion" type="text" class="validate" ng-model="religion">
+                    <select data-ng-model="religion" class="browser-default">
+                        <option>Indisponível</option>
+                        <option>Cristão</option>
+                        <option>Evangelico</option>
+                        <option>Católico</option>
+                        <option>Congregação</option>
+                        <option>Outra</option>
+                    </select>
                 </div>
 
                 <div class="input-field col s12">
@@ -211,7 +218,7 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <a class="waves-effect waves-light btn blue" style="margin-top: 15px">Print Certificate</a>
+                        <a class="waves-effect waves-light btn blue" style="margin-top: 15px" ng-click="getCertInfo()">Print Certificate</a>
                     </div>
                 </div>
 

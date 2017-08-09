@@ -499,7 +499,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
         }
 
-        address += "\n" + $scope.city + " " + $scope.state + " " + $scope.zip;
+        address += "\n" + $scope.zip + " " + $scope.city + " - " + $scope.state;
 
         clipboard.copyText(address.toUpperCase());
         console.log(address);

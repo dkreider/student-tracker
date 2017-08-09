@@ -494,7 +494,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     $scope.getCertInfo = function () {
 
-        var certInfo = $scope.name;
+        var certInfo = $scope.name.toUpperCase();
         var sum = 0;
         var average = 0;
 
@@ -502,7 +502,11 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
         for (i in $scope.selectedCourseGrades) {
 
-            sum += $scope.selectedCourseGrades[i];
+            if (isNaN($scope.selectedCourseGrades[i]) == false) {
+
+                sum += $scope.selectedCourseGrades[i];
+
+            }
 
         }
 

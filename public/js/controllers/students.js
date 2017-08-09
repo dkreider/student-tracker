@@ -467,13 +467,27 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
         if ($scope.prisonerId != null && $scope.prisonerId != "") {
 
-            address += ", MT - " + $scope.prisonerId;
+            address += ", MT: " + $scope.prisonerId;
 
         }
         
-        if ($scope.wing != null && $scope.cell != null) {
+        if ($scope.wing != null) {
 
-            address += "\nRaio " + $scope.wing + " Cela " + $scope.cell; 
+            address += "\nRaio " + $scope.wing; 
+
+        }
+
+        if ($scope.cell != null) {
+
+            if ($scope.wing == null) {
+
+                address += "\nCela " + $scope.cell;
+
+            } else {
+
+                address += " Cela " + $scope.cell;
+
+            }
 
         }
 

@@ -492,4 +492,25 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     }
 
+    $scope.getCertInfo = function () {
+
+        var certInfo = $scope.name;
+        var sum = 0;
+        var average = 0;
+
+        certInfo += "\n\n\n" + $scope.currentCourse;
+
+        for (i in $scope.selectedCourseGrades) {
+
+            sum += $scope.selectedCourseGrades[i];
+
+        }
+
+        average = sum / $scope.selectedCourseGrades.length;
+        certInfo += "\n\n" + average.toPrecision(2);
+        clipboard.copyText(certInfo);
+
+    }
+
+
 });

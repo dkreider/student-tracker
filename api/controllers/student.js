@@ -73,7 +73,8 @@ module.exports.saveStudent = function(req, res) {
                 email: req.body.email,
                 religion: req.body.religion,
                 notes: req.body.notes,
-                courses: req.body.courses
+                courses: req.body.courses,
+                grades:req.body.grades
 
             }, function(err, student) {
 

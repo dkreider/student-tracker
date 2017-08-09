@@ -212,7 +212,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         $scope.zip = "";
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
-        $scope.status = "Canidate";
+        $scope.status = "Candidate";
         $scope.email = "";
         $scope.religion = "";
         $scope.notes = "";

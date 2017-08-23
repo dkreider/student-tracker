@@ -375,7 +375,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
                 method: "GET",
                 url: "api/studentSearch",
-                params: {searchTerm : $scope.searchTerm}
+                params: {searchTerm : '"' + $scope.searchTerm + '"'}
 
             }).then(function successCallBack(response) {
 

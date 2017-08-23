@@ -19,7 +19,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         var listener = new window.keypress.Listener();
 
         // Go back a student.
-        listener.simple_combo("shift b", function() {
+        listener.simple_combo("ctrl alt b", function() {
 
             var studentId = --$scope.studentId;
             $scope.loadStudent(studentId);
@@ -27,7 +27,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         });
 
         // Go forward a student.
-        listener.simple_combo("shift f", function() {
+        listener.simple_combo("ctrl alt f", function() {
 
             var studentId = ++$scope.studentId;
             $scope.loadStudent(studentId);
@@ -35,14 +35,14 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
         });
 
         // Load previously loaded student.
-        listener.simple_combo("shift l", function() {
+        listener.simple_combo("ctrl alt l", function() {
 
             $scope.loadStudent($scope.lastStudent);
 
         });
 
         // Clear screen.
-        listener.simple_combo("shift n", function() {
+        listener.simple_combo("ctrl alt n", function() {
 
             $scope.clearData();
 
@@ -429,7 +429,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
             });        
 
-    }
+        }
 
     $scope.search = function() {
 

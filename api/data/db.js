@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
-var dbUrl = "mongodb://localhost:27017/students";
+var config = require("../config");
+var dbUrl = config.mongoDbServerUrl;
 
 mongoose.connect(dbUrl);
 

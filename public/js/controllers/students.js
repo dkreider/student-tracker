@@ -404,18 +404,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
                 } else {
 
-                    if ($scope.address1 == "" || $scope.address1 == null) {
-
-                        $scope.address1 = response.data.logradouro;
-
-                    }
-
-                    if ($scope.address2 == "" || $scope.address2 == null) {
-
-                        $scope.address2 = response.data.bairro;
-
-                    }
-
+                    $scope.address1 = response.data.logradouro;
+                    $scope.address2 = response.data.bairro;
                     $scope.city = response.data.localidade;
                     $scope.state = response.data.uf;
                     $scope.zip = response.data.cep;

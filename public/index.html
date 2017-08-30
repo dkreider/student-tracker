@@ -68,12 +68,8 @@
                     <input placeholder="Cela" type="number" ng-model="cell">
                 </div>
 
-                <div class="input-field col s12">
-                    <input placeholder="Address 1" type="text" class="validate" ng-model="address1">
-                </div>
-
-                <div class="input-field col s12">
-                    <input placeholder="Address 2" type="text" ng-model="address2">
+                <div class="input-field col s4">
+                    <input placeholder="Zip" type="text" ng-model="zip" ng-keyup="$event.keyCode === 13 && loadAddressInfo()">
                 </div>
 
                 <div class="input-field col s6">
@@ -84,8 +80,12 @@
                     <input placeholder="State" type="text" ng-model="state">
                 </div>
 
-                <div class="input-field col s4">
-                    <input placeholder="Zip" type="text" ng-model="zip" ng-keyup="$event.keyCode === 13 && loadAddressInfo()">
+                <div class="input-field col s12">
+                    <input placeholder="Address 1" type="text" class="validate" ng-model="address1">
+                </div>
+
+                <div class="input-field col s12">
+                    <input placeholder="Address 2" type="text" ng-model="address2">
                 </div>
 
                 <div class="input-field col s4">

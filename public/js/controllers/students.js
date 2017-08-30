@@ -433,11 +433,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     $scope.search = function() {
 
-        if ($scope.searchTerm == null || $scope.searchTerm == "") {
-
-            $scope.searchResults = null;
-
-        } 
+        $scope.searchResults = null;
 
         $http({
 

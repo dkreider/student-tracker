@@ -1,12 +1,13 @@
 var studentTracker = angular.module("studentTracker", ['angular-clipboard']);
 
-studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
+studentTracker.controller("studentCtrl", function($scope, $http, clipboard, studentData) {
 
     $scope.selectedCourseGrades = []; // Used to store the grades of the selected course.
     $scope.newGrades            = []; // Used to store the new grade objects to be saved.
     $scope.courses              = []; // Used to store student's courses.
     $scope.grades               = []; // Used to store student's grades.
     $scope.lastStudent          = 0;  // Used to store last student loaded.    
+    $scope.newStudent           = true; // Used to know whether or not we're saving a new student or updating an existing one.
 
     angular.element(document).ready(function() {
 
@@ -117,49 +118,37 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
             $scope.studentId = studentId;
 
-            $http({
-
-                method: "GET",
-                url: "api/student",
-                params: {studentId : $scope.studentId}
-
-            }).then(function successCallBack(response) {
+            studentData.loadStudent(studentId).then(function(response) {
 
                 if (response.data.error) {
 
                     Materialize.toast(response.data.error, 2000);
                     $scope.clearData();
-
-                } else {
-
-                    $scope.studentId = response.data.studentId;
-                    $scope.name = response.data.name;
-                    $scope.prisonerId = response.data.prisonerId;
-                    $scope.wing = response.data.wing;
-                    $scope.cell = response.data.cell;
-                    $scope.address1 = response.data.address1;
-                    $scope.address2 = response.data.address2;
-                    $scope.city = response.data.city;
-                    $scope.state = response.data.state;
-                    $scope.zip = response.data.zip;
-                    $scope.enrolled = new Date(response.data.enrolled);
-                    $scope.lastHeard = new Date(response.data.lastHeard);
-                    $scope.status = response.data.status;
-                    $scope.email = response.data.email;
-                    $scope.religion = response.data.religion;
-                    $scope.notes = response.data.notes;
-                    $scope.courses = response.data.courses;
-                    $scope.currentCourse = response.data.courses[0];
-                    $scope.grades = response.data.grades;
-                    $scope.loadCourseGrades($scope.currentCourse);
+                    return;
 
                 }
 
-            }, function errorCallBack(response) {
-
-                Materialize.toast(response.data.error, 2000);
-                console.log(response);
-                $scope.clearData();
+                $scope.newStudent = false;
+                $scope.studentId = response.data.studentId;
+                $scope.name = response.data.name;
+                $scope.prisonerId = response.data.prisonerId;
+                $scope.wing = response.data.wing;
+                $scope.cell = response.data.cell;
+                $scope.address1 = response.data.address1;
+                $scope.address2 = response.data.address2;
+                $scope.city = response.data.city;
+                $scope.state = response.data.state;
+                $scope.zip = response.data.zip;
+                $scope.enrolled = new Date(response.data.enrolled);
+                $scope.lastHeard = new Date(response.data.lastHeard);
+                $scope.status = response.data.status;
+                $scope.email = response.data.email;
+                $scope.religion = response.data.religion;
+                $scope.notes = response.data.notes;
+                $scope.courses = response.data.courses;
+                $scope.currentCourse = response.data.courses[0];
+                $scope.grades = response.data.grades;
+                $scope.loadCourseGrades($scope.currentCourse);
 
             });
         
@@ -169,30 +158,17 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
     $scope.loadNewestStudentId = function() {
 
-        $http({
-
-            method: "GET",
-            url: "api/newStudentId"
-
-        }).then(function successCallBack(response) {
+        studentData.getNewStudentId().then(function(response) {
 
             if (response.data.error) {
 
-                Materialize.toast("Error! " + response.data.error);
-                console.log(response.data.error);
-                $scope.clearData();
-
-            } else {
-
-                $scope.studentId = response.data.studentId;
+                Materialize.toast(response.data.error, 2000);
+                return;
 
             }
 
-        }, function errorCallBack(response) {
-
-            Materialize.toast("Error! " + response.data.error);
-            console.log(error);
-            $scope.clearData();
+            $scope.newStudent = true;
+            $scope.studentId = response.data.studentId;
 
         });
 
@@ -237,34 +213,18 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
         if (confirmDelete == true) {
 
+            studentData.deleteStudent($scope.studentId).then(function(response) {
 
-            $http({
+                if (response.data.error) {
 
-                method: "DELETE",
-                url: "api/student",
-                params: {studentId: $scope.studentId}
-
-            }).then(function successCallBack(response) {
-
-                if (response.data.error != null) {
-
-                    Materialize.toast("Error! " + response.data.error, 2000);
-                    console.log(response.data.error);
-                    $scope.clearData();
-
-                } else {
-
-                    Materialize.toast("Successfully deleted student.", 2000);
-                    $scope.clearData();
+                    Materialize.toast(response.data.error, 2000);
+                    return;
 
                 }
 
-            }, function errorCallBack(response) {
-
-                Materialize.toast("Error! " + response.data.error);
-                console.log(response);
+                Materialize.toast("Successfully deleted student!", 2000);
                 $scope.clearData();
-                
+
             });
         
         }
@@ -278,107 +238,136 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
             Materialize.toast("Not enough of info given!", 2000);
             return;
 
-        } else {
+        }
 
-            $scope.newGrades = [];
-            // Add grades of currently selected course.
+        $scope.newGrades = [];
 
-            for (var i = 0; i < $scope.selectedCourseGrades.length; i++) {
+        // Add grades of currently selected course.
 
-                $scope.newGrades.push({
-                    "name":$scope.currentCourse,
-                    "grade": $scope.selectedCourseGrades[i]
-                });
+        for (var i = 0; i < $scope.selectedCourseGrades.length; i++) {
 
-            }
+            $scope.newGrades.push({
+                "name":$scope.currentCourse,
+                "grade": $scope.selectedCourseGrades[i]
+            });
 
-            // Add grades of un-selected courses.
+        }
 
-            for (var i = 0; i < $scope.courses.length; i++) {
+        // Add grades of un-selected courses.
 
-                if ($scope.currentCourse != $scope.courses[i]) {
+        for (var i = 0; i < $scope.courses.length; i++) {
 
-                    for (var x = 0; x < $scope.grades.length; x++) {
+            if ($scope.currentCourse != $scope.courses[i]) {
 
-                        if ($scope.grades[x].name == $scope.courses[i]) {
+                for (var x = 0; x < $scope.grades.length; x++) {
 
-                            $scope.newGrades.push({
-                                "name":$scope.grades[x].name,
-                                "grade":$scope.grades[x].grade
-                            });
+                    if ($scope.grades[x].name == $scope.courses[i]) {
 
-                        }
+                        $scope.newGrades.push({
+                            "name":$scope.grades[x].name,
+                            "grade":$scope.grades[x].grade
+                        });
 
-                    }   
+                    }
 
-                }
-
-            }   
-
-            $scope.studentId = parseInt($scope.studentId);
-            $scope.wing = parseInt($scope.wing);
-            $scope.cell = parseInt($scope.cell);
-            $scope.enrolled = new Date($scope.enrolled);
-            $scope.lastHeard = new Date($scope.lastHeard);
-
-            if ($scope.prisonerId && $scope.prisonerId.length == 6) {
-
-                var prisonerId = $scope.prisonerId;
-                $scope.prisonerId = prisonerId.slice(0, 3) + "-" + prisonerId.slice(3);
+                }   
 
             }
 
-            $http({
+        }   
 
-                method: "POST",
-                url: "api/student",
-                data: { 
+        if ($scope.prisonerId && $scope.prisonerId.length == 6) {
 
-                        studentId: $scope.studentId, 
-                        name:$scope.name, 
-                        prisonerId:$scope.prisonerId, 
-                        wing:$scope.wing, 
-                        cell:$scope.cell, 
-                        address1:$scope.address1, 
-                        address2:$scope.address2, 
-                        city:$scope.city, 
-                        state:$scope.state,
-                        zip:$scope.zip,
-                        enrolled:$scope.enrolled,
-                        lastHeard:$scope.lastHeard,
-                        status:$scope.status,
-                        email:$scope.email,
-                        religion:$scope.religion,
-                        notes:$scope.notes,
-                        courses:$scope.courses,
-                        grades:$scope.newGrades
+            var prisonerId = $scope.prisonerId;
+            $scope.prisonerId = prisonerId.slice(0, 3) + "-" + prisonerId.slice(3);
 
-            }
+        }
 
-            }).then(function successCallBack(response) {
+        if ($scope.newStudent) {
+
+            studentData.getNewStudentId().then(function(response) {
 
                 if (response.data.error) {
 
-                    Materialize.toast(response.data.error.message, 2000);
-                    console.log(response.data);
-                    $scope.clearData();
+                    Materialize.toast(response.data.error);
+                    return;
 
-                } else {
+                }
+                
+                var student = new Object();
+                student.studentId = parseInt(response.data.studentId);
+                student.name = $scope.name;
+                student.prisonerId = $scope.prisonerId;
+                student.wing = parseInt($scope.wing);
+                student.cell = parseInt($scope.cell);
+                student.address1 = $scope.address1; 
+                student.address2 = $scope.address2; 
+                student.city = $scope.city; 
+                student.state = $scope.state;
+                student.zip = $scope.zip;
+                student.enrolled = new Date($scope.enrolled);
+                student.lastHeard = new Date($scope.lastHeard);
+                student.status = $scope.status;
+                student.email = $scope.email;
+                student.religion = $scope.religion;
+                student.notes = $scope.notes;
+                student.courses = $scope.courses;
+                student.grades = $scope.newGrades;
+        
+                studentData.saveStudent(student).then(function(saveStudentResponse) {
+
+                    if (response.data.error) {
+
+                        Materialize.toast(saveStudentResponse.data.error, 2000);
+                        return;
+
+                    }
 
                     Materialize.toast("Successfully saved student!", 2000);
                     $scope.clearData();
+        
+                });
+        
+    
+            });
+
+        } else {
+
+            var student = new Object();
+            student.studentId = parseInt($scope.studentId);
+            student.name = $scope.name;
+            student.prisonerId = $scope.prisonerId;
+            student.wing = parseInt($scope.wing);
+            student.cell = parseInt($scope.cell);
+            student.address1 = $scope.address1; 
+            student.address2 = $scope.address2; 
+            student.city = $scope.city; 
+            student.state = $scope.state;
+            student.zip = $scope.zip;
+            student.enrolled = new Date($scope.enrolled);
+            student.lastHeard = new Date($scope.lastHeard);
+            student.status = $scope.status;
+            student.email = $scope.email;
+            student.religion = $scope.religion;
+            student.notes = $scope.notes;
+            student.courses = $scope.courses;
+            student.grades = $scope.newGrades;
+    
+            studentData.saveStudent(student).then(function(response) {
+
+                if (response.data.error) {
+
+                    Materialize.toast(response.data.error);
+                    return;
 
                 }
-
-            }, function errorCallBack(response) {
-
-                Materialize.toast(response, 2000);
-                console.log(response);
+    
+                Materialize.toast("Successfully updated student!", 2000);
                 $scope.clearData();
+    
+            });
 
-            }); 
-
-        } 
+        }
         
     }
 
@@ -425,29 +414,18 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard) {
 
         $scope.searchResults = null;
 
-        $http({
+        studentData.search($scope.searchTerm).then(function(response) {
 
-                method: "GET",
-                url: "api/studentSearch",
-                params: {searchTerm : '"' + $scope.searchTerm + '"'}
+            if (response.data.error) {
 
-            }).then(function successCallBack(response) {
+                console.log(response.data.error);   
+                return;
 
-                if (response.data.error) {
+            }
 
-                    console.log(response.data.error);
+            $scope.searchResults = response.data;
 
-                } else {
-
-                    $scope.searchResults = response.data;
-
-                }
-
-            }, function errorCallBack(response) {
-
-                console.log(response.data);
-
-            });        
+        }); 
 
     }
 

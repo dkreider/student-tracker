@@ -53,6 +53,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
         listener.simple_combo("ctrl alt a", function() {
 
             $("#addCourse").modal("open");
+            $("#newCourse").focus().select();
 
         });
 

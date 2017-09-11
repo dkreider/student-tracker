@@ -207,7 +207,7 @@
                     <div id="addCourse" class="modal">
                         <div class="modal-content">
                             <h4>Add a new course to student's record</h4>
-                            <select data-ng-model="course" class="browser-default">
+                            <select data-ng-model="course" class="browser-default" id="newCourse">
                                 <option ng-repeat="course in availableCourses track by $index" ng-value="course.name">{{course.name}}</option>
                             </select>
                         </div>

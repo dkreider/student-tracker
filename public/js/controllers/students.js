@@ -49,6 +49,13 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
         });
 
+        // Open add course model
+        listener.simple_combo("ctrl alt a", function() {
+
+            $("#addCourse").modal("open");
+
+        });
+
         // Save student.
         listener.simple_combo("f9", function() {
 

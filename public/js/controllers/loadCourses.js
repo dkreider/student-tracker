@@ -1,5 +1,11 @@
 angular.module("studentTracker").controller("loadCourses", function($scope, $http) {
 
+    angular.element(document).ready(function() {
+
+        $scope.loadCourses();        
+
+    });
+
     $scope.loadCourses = function() {
 
         $http({

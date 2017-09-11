@@ -204,9 +204,6 @@
 
                 <!-- Add Course Modal -->
                 <div ng-controller="loadCourses">
-                    <div class="col s12">
-                        <a class="waves-effect waves-light btn modal-trigger blue" id="addCourse" href="#addCourse" ng-click="loadCourses()">Add course</a>
-                    </div>
                     <div id="addCourse" class="modal">
                         <div class="modal-content">
                             <h4>Add a new course to student's record</h4>
@@ -218,6 +215,9 @@
                             <a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addCourse(course)">Save</a>
                             <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
                         </div>
+                    </div>
+                    <div class="col s12">
+                        <a data-target="addCourse" class="waves-effect waves-light btn modal-trigger blue" id="addCourse">Add course</a>
                     </div>
                     <div class="col s12">
                         <a class="waves-effect waves-light btn blue" style="margin-top: 15px" ng-click="getCertInfo()">Print Certificate</a>

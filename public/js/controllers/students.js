@@ -6,11 +6,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
     $scope.newGrades            = []; // Used to store the new grade objects to be saved.
     $scope.courses              = []; // Used to store student's courses.
     $scope.grades               = []; // Used to store student's grades.
-<<<<<<< HEAD
-=======
     $scope.lastStudent          = 0;  // Used to store last student loaded.    
     $scope.newStudent           = true; // Used to know whether or not we're saving a new student or updating an existing one.
->>>>>>> 73631e6... query for newest student id before saving to avoid multiple user headaches
 
     angular.element(document).ready(function() {
 
@@ -220,39 +217,6 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
                 }   
 
-<<<<<<< HEAD
-            $scope.studentId = parseInt($scope.studentId);
-            $scope.prisonerId = parseInt($scope.prisonerId);
-            $scope.wing = parseInt($scope.wing);
-            $scope.cell = parseInt($scope.cell);
-            $scope.enrolled = new Date($scope.enrolled);
-            $scope.lastHeard = new Date($scope.lastHeard);
-
-            $http({
-
-                method: "POST",
-                url: "api/student",
-                data: { 
-
-                        studentId: $scope.studentId, 
-                        name:$scope.name, 
-                        prisonerId:$scope.prisonerId, 
-                        wing:$scope.wing, 
-                        cell:$scope.cell, 
-                        address1:$scope.address1, 
-                        address2:$scope.address2, 
-                        city:$scope.city, 
-                        state:$scope.state,
-                        zip:$scope.zip,
-                        enrolled:$scope.enrolled,
-                        lastHeard:$scope.lastHeard,
-                        status:$scope.status,
-                        email:$scope.email,
-                        religion:$scope.religion,
-                        notes:$scope.notes,
-                        courses:$scope.courses,
-                        grades:$scope.newGrades
-=======
             }
 
         }   
@@ -263,7 +227,6 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
             $scope.prisonerId = prisonerId.slice(0, 3) + "-" + prisonerId.slice(3);
 
         }
->>>>>>> 73631e6... query for newest student id before saving to avoid multiple user headaches
 
         if ($scope.newStudent) {
 

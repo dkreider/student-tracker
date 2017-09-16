@@ -102,7 +102,7 @@ studentTracker.controller("coursesCtrl", function($scope, $http) {
 
         }, function errorCallBack(response) {
 
-            Materialize.toast("Error trying to load next course id! " + response);
+            Materialize.toast("Error trying to load next course id! " + response.data.error);
             console.log(response);
 
         });

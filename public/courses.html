@@ -35,7 +35,7 @@
 						<input type="text" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="searchCourses()">
 					</div>
 
-					<div class="collection" id="list" ng-repeat="course in searchResults track by $index">
+					<div class="collection" ng-repeat="course in searchResults track by $index">
 						<a href="#" class="collection-item" ng-click="loadCourse(course.courseId)">{{course.name}}</a>
 					</div>
 								

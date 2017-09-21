@@ -314,7 +314,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 student.state = $scope.state;
                 student.zip = $scope.zip;
                 student.enrolled = new Date($scope.enrolled);
-                student.lastHeard = new Date($scope.lastHeard);
+                student.lastHeard = new Date();
                 student.status = $scope.status;
                 student.email = $scope.email;
                 student.religion = $scope.religion;
@@ -353,7 +353,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
             student.state = $scope.state;
             student.zip = $scope.zip;
             student.enrolled = new Date($scope.enrolled);
-            student.lastHeard = new Date($scope.lastHeard);
+            student.lastHeard = new Date();
             student.status = $scope.status;
             student.email = $scope.email;
             student.religion = $scope.religion;

@@ -42,7 +42,7 @@ module.exports.loadStudent = function(req, res) {
 
 module.exports.saveStudent = function(req, res) {
 
-    console.log(req.body.status);
+    console.log(req.body);
 
     Student.findOne({"studentId":req.body.studentId}, function(err, student) {
 
@@ -59,6 +59,7 @@ module.exports.saveStudent = function(req, res) {
 
                 studentId : req.body.studentId,
                 name : req.body.name,
+                prisoner : req.body.prisoner,
                 prisonerId : req.body.prisonerId,
                 wing : req.body.wing,
                 cell : req.body.cell,
@@ -69,7 +70,9 @@ module.exports.saveStudent = function(req, res) {
                 zip : req.body.zip,
                 enrolled : req.body.enrolled,
                 lastHeard : req.body.lastHeard,
+                birthYear : req.body.birthYear,
                 status: req.body.status,
+                marriageStatus: req.body.marriageStatus,
                 email: req.body.email,
                 religion: req.body.religion,
                 notes: req.body.notes,
@@ -106,6 +109,7 @@ module.exports.saveStudent = function(req, res) {
                 }, {
 
                     name : req.body.name,
+                    prisoner : req.body.prisoner,
                     prisonerId : req.body.prisonerId,
                     wing : req.body.wing,
                     cell : req.body.cell,
@@ -116,7 +120,9 @@ module.exports.saveStudent = function(req, res) {
                     zip : req.body.zip,
                     enrolled : req.body.enrolled,
                     lastHeard : req.body.lastHeard,
-                    status : req.body.status,
+                    birthYear : req.body.birthYear,
+                    status: req.body.status,
+                    marriageStatus: req.body.marriageStatus,
                     email: req.body.email,
                     religion: req.body.religion,
                     notes: req.body.notes,

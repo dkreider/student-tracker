@@ -14,6 +14,7 @@ var studentSchema = new mongoose.Schema({
         required : true
     },
 
+    prisoner: Boolean,
     prisonerId : String,
     wing : Number,
     cell : Number,
@@ -24,7 +25,9 @@ var studentSchema = new mongoose.Schema({
     zip : String,
     enrolled : Date,
     lastHeard : Date,
+    birthYear : String,
     status : String,
+    marriageStatus: String,
     email : String,
     religion: String,
     notes : String,

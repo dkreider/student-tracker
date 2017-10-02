@@ -15,6 +15,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
         $scope.status = "Candidate";
+        $scope.marriageStatus = "Unknown";
+        $scope.religion = "Indisponível";
 
         // Register our keyboard shortcuts.
         var listener = new window.keypress.Listener();

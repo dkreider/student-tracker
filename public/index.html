@@ -40,7 +40,7 @@
                           
         </div>
 
-        <div class="col s5" id="editStudent">
+        <div class="col s6" id="editStudent">
 
             <form>
 
@@ -52,11 +52,20 @@
                     <input placeholder="Student ID" type="text" class="validate" ng-model="studentId" ng-keyup="$event.keyCode === 13 && loadStudent(studentId)">
                 </div>
 
-                <div class="input-field col s10">
+                <div class="input-field col s6">
                     <input placeholder="Complete Name" type="text" class="validate" ng-model="name" id="name">
                 </div>
 
-                <div class="input-field col s6">
+                <div class="input-field col s4">
+                    <input placeholder="Email" type="email" name="email" class="validate" ng-model="email">
+                </div>
+
+                <div class="input-field col s2">
+                    <input type="checkbox" id="prisoner" ng-checked="prisoner" ng-model="prisoner"/>
+                    <label for="prisoner">Prisoner</label>
+                </div>
+
+                <div class="input-field col s4">
                     <input placeholder="Prisoner ID" type="text" ng-model="prisonerId" class="validate">
                 </div>
 
@@ -80,20 +89,21 @@
                     <input placeholder="State" type="text" ng-model="state">
                 </div>
 
-                <div class="input-field col s12">
+                <div class="input-field col s6">
                     <input placeholder="Address 1" type="text" class="validate" ng-model="address1">
                 </div>
 
-                <div class="input-field col s12">
+                <div class="input-field col s6">
                     <input placeholder="Address 2" type="text" ng-model="address2">
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Date enrolled" type="date" datetime="yyyy-MM-dd" class="datepicker tooltipped" data-tooltip="Date enrolled" ng-model="enrolled" value="{{enrolled | date : 'yyyy-MM-dd'}}"/>
-                </div>
-
-                <div class="input-field col s4">
-                    <input placeholder="Date last heard" type="date" class="datepicker tooltipped" data-tooltip="Last modified" ng-model="lastHeard" value="{{lastHeard | date : 'yyyy-MM-dd'}}" />
+                    <select data-ng-model="marriageStatus" class="browser-default tooltipped" data-tooltip="Marriage status">
+                        <option>Single</option>
+                        <option>Married</option>
+                        <option>Divorced</option>
+                        <option>Unknown</option>
+                    </select>
                 </div>
 
                 <div class="input-field col s4">
@@ -105,11 +115,7 @@
                     </select>
                 </div>
 
-                <div class="input-field col s6">
-                    <input placeholder="Email" type="email" name="email" class="validate" ng-model="email">
-                </div>
-
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                     <select data-ng-model="religion" class="browser-default">
                         <option>Indisponível</option>
                         <option>Cristão</option>
@@ -122,8 +128,20 @@
                     </select>
                 </div>
 
+                <div class="input-field col s4">
+                    <input placeholder="Date enrolled" type="date" datetime="yyyy-MM-dd" class="datepicker tooltipped" data-tooltip="Date enrolled" ng-model="enrolled" value="{{enrolled | date : 'yyyy-MM-dd'}}"/>
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Date last heard" type="date" class="datepicker tooltipped" data-tooltip="Last modified" ng-model="lastHeard" value="{{lastHeard | date : 'yyyy-MM-dd'}}" />
+                </div>
+
+                <div class="input-field col s4">
+                    <input placeholder="Birth year" type="text" ng-model="birthYear"/>
+                </div>
+
                 <div class="input-field col s12">
-                    <textarea placeholder="Notes" class="materialize-textarea" data-length="180" ng-model="notes"></textarea>
+                    <textarea placeholder="Notes" class="materialize-textarea" id="notes" data-length="380" ng-model="notes"></textarea>
                 </div>
 
                 <div class="input-field col s3">
@@ -148,7 +166,7 @@
 
         </div>
 
-        <div class="col s4" id="studentGrades">
+        <div class="col s3" id="studentGrades">
 
                 <h5>Courses</h5>
                 <div class="input-field">

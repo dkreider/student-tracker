@@ -139,6 +139,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 $scope.newStudent = false;
                 $scope.studentId = response.data.studentId;
                 $scope.name = response.data.name;
+                $scope.prisoner = response.data.prisoner,
                 $scope.prisonerId = response.data.prisonerId;
                 $scope.wing = response.data.wing;
                 $scope.cell = response.data.cell;
@@ -149,7 +150,9 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 $scope.zip = response.data.zip;
                 $scope.enrolled = new Date(response.data.enrolled);
                 $scope.lastHeard = new Date(response.data.lastHeard);
+                $scope.birthYear = response.data.birthYear,
                 $scope.status = response.data.status;
+                $scope.marriageStatus = response.data.marriageStatus,
                 $scope.email = response.data.email;
                 $scope.religion = response.data.religion;
                 $scope.notes = response.data.notes;
@@ -157,6 +160,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 $scope.currentCourse = response.data.courses[0];
                 $scope.grades = response.data.grades;
                 $scope.loadCourseGrades($scope.currentCourse);
+
+                $('#notes').trigger('autoresize');
 
             });
         
@@ -186,6 +191,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
         $scope.lastStudent = $scope.studentId;
         $scope.name = "";
+        $scope.prisoner = false;
         $scope.prisonerId = "";
         $scope.wing = "";
         $scope.cell = "";
@@ -196,9 +202,11 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
         $scope.zip = "";
         $scope.enrolled = new Date();
         $scope.lastHeard = new Date();
+        $scope.birthYear = "";
+        $scope.marriageStatus = "Unknown";
         $scope.status = "Candidate";
         $scope.email = "";
-        $scope.religion = "";
+        $scope.religion = "Indisponível";
         $scope.notes = "";
         $scope.courses = [];
         $scope.currentCourseGrades = [];
@@ -305,6 +313,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 var student = new Object();
                 student.studentId = parseInt(response.data.studentId);
                 student.name = $scope.name;
+                student.prisoner = $scope.prisoner,
                 student.prisonerId = $scope.prisonerId;
                 student.wing = parseInt($scope.wing);
                 student.cell = parseInt($scope.cell);
@@ -315,6 +324,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 student.zip = $scope.zip;
                 student.enrolled = new Date($scope.enrolled);
                 student.lastHeard = new Date();
+                student.birthYear = $scope.birthYear;
+                student.marriageStatus = $scope.marriageStatus;
                 student.status = $scope.status;
                 student.email = $scope.email;
                 student.religion = $scope.religion;
@@ -344,6 +355,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
             var student = new Object();
             student.studentId = parseInt($scope.studentId);
             student.name = $scope.name;
+            student.prisoner = $scope.prisoner;
             student.prisonerId = $scope.prisonerId;
             student.wing = parseInt($scope.wing);
             student.cell = parseInt($scope.cell);
@@ -354,6 +366,8 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
             student.zip = $scope.zip;
             student.enrolled = new Date($scope.enrolled);
             student.lastHeard = new Date();
+            student.birthYear = $scope.birthYear;
+            student.marriageStatus = $scope.marriageStatus;
             student.status = $scope.status;
             student.email = $scope.email;
             student.religion = $scope.religion;

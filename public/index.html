@@ -16,10 +16,10 @@
         <div class="nav-wrapper blue">
           <a href="/" class="brand-logo" id="logo">Student Tracker</a>
           <ul class="right hide-on-med-and-down">
-            <li class="active"><a href="index.html"><i class="material-icons left">perm_identity</i>Students</a></li>
-            <li><a href="courses.html"><i class="material-icons left">assignment</i>Courses</a></li>
-            <li><a href="reports.html"><i class="material-icons left">query_builder</i>Reports</a></li>
-            <li><a href="#help"><i class="material-icons left">live_help</i>Help</a></li>
+            <li class="active"><a href="index.html"><i class="material-icons left">perm_identity</i>Alunos</a></li>
+            <li><a href="courses.html"><i class="material-icons left">assignment</i>Cursos</a></li>
+            <li><a href="reports.html"><i class="material-icons left">query_builder</i>Relatório</a></li>
+            <li><a href="#help"><i class="material-icons left">live_help</i>Ajuda</a></li>
           </ul>
         </div>
     </nav>
@@ -31,7 +31,7 @@
         <div class="col s2">
 
             <div class="input-field">
-                <input type="text" id="search" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="search()">
+                <input type="text" id="search" placeholder="Pesquisar" class="validate" ng-model="searchTerm" ng-keyup="search()">
             </div><br>
 
             <div class="collection" ng-repeat="student in searchResults track by student._id">
@@ -44,29 +44,29 @@
 
             <form>
 
-              <h5>Student Details</h5>
+              <h5>Detalhes do aluno</h5>
 
               <div class="row">
 
                 <div class="input-field col s2">
-                    <input placeholder="Student ID" type="text" class="validate" ng-model="studentId" ng-keyup="$event.keyCode === 13 && loadStudent(studentId)">
+                    <input placeholder="Identificação" type="text" class="validate" ng-model="studentId" ng-keyup="$event.keyCode === 13 && loadStudent(studentId)">
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="Complete Name" type="text" class="validate" ng-model="name" id="name">
+                    <input placeholder="Nome completo" type="text" class="validate" ng-model="name" id="name">
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Email" type="email" name="email" class="validate" ng-model="email">
+                    <input placeholder="e-mail" type="email" name="email" class="validate" ng-model="email">
                 </div>
 
                 <div class="input-field col s2">
                     <input type="checkbox" id="prisoner" ng-checked="prisoner" ng-model="prisoner"/>
-                    <label for="prisoner">Prisoner</label>
+                    <label for="prisoner">Prisioneiro</label>
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Prisoner ID" type="text" ng-model="prisonerId" class="validate">
+                    <input placeholder="Matrícula" type="text" ng-model="prisonerId" class="validate">
                 </div>
 
                 <div class="input-field col s3">
@@ -78,40 +78,40 @@
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Zip" type="text" ng-model="zip" ng-keyup="$event.keyCode === 13 && loadAddressInfo()">
+                    <input placeholder="CEP" type="text" ng-model="zip" ng-keyup="$event.keyCode === 13 && loadAddressInfo()">
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="City" type="text" ng-model="city">
+                    <input placeholder="Cidade" type="text" ng-model="city">
                 </div>
 
                 <div class="input-field col s2">
-                    <input placeholder="State" type="text" ng-model="state">
+                    <input placeholder="Estado" type="text" ng-model="state">
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="Address 1" type="text" class="validate" ng-model="address1">
+                    <input placeholder="Endereço 1" type="text" class="validate" ng-model="address1">
                 </div>
 
                 <div class="input-field col s6">
-                    <input placeholder="Address 2" type="text" ng-model="address2">
+                    <input placeholder="Endereço 2" type="text" ng-model="address2">
                 </div>
 
                 <div class="input-field col s4">
-                    <select data-ng-model="marriageStatus" class="browser-default tooltipped" data-tooltip="Marriage status">
-                        <option>Single</option>
-                        <option>Married</option>
-                        <option>Divorced</option>
-                        <option>Unknown</option>
+                    <select data-ng-model="marriageStatus" class="browser-default tooltipped" data-tooltip="Estado civil">
+                        <option>Solteiro/a</option>
+                        <option>Casado/a</option>
+                        <option>Divorciado/a</option>
+                        <option>Desconhecida</option>
                     </select>
                 </div>
 
                 <div class="input-field col s4">
-                    <select data-ng-model="status" class="browser-default tooltipped" data-tooltip="Student status">
-                        <option>Active</option>
-                        <option>Candidate</option>
-                        <option>Inactive</option>
-                        <option>Graduate</option>
+                    <select data-ng-model="status" class="browser-default tooltipped" data-tooltip="Status do aluno">
+                        <option>Ativo</option>
+                        <option>Candidato</option>
+                        <option>Inativo</option>
+                        <option>Graduado</option>
                     </select>
                 </div>
 
@@ -129,35 +129,35 @@
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Date enrolled" type="date" datetime="yyyy-MM-dd" class="datepicker tooltipped" data-tooltip="Date enrolled" ng-model="enrolled" value="{{enrolled | date : 'yyyy-MM-dd'}}"/>
+                    <input placeholder="Data matriculada" type="date" datetime="yyyy-MM-dd" class="datepicker tooltipped" data-tooltip="Data matriculada" ng-model="enrolled" value="{{enrolled | date : 'yyyy-MM-dd'}}"/>
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Date last heard" type="date" class="datepicker tooltipped" data-tooltip="Last modified" ng-model="lastHeard" value="{{lastHeard | date : 'yyyy-MM-dd'}}" />
+                    <input placeholder="Data modificada" type="date" class="datepicker tooltipped" data-tooltip="Data modificada" ng-model="lastHeard" value="{{lastHeard | date : 'yyyy-MM-dd'}}" />
                 </div>
 
                 <div class="input-field col s4">
-                    <input placeholder="Birth year" type="text" ng-model="birthYear"/>
+                    <input placeholder="Nascimento" type="text" ng-model="birthYear"/>
                 </div>
 
                 <div class="input-field col s12">
-                    <textarea placeholder="Notes" class="materialize-textarea" id="notes" data-length="380" ng-model="notes"></textarea>
+                    <textarea placeholder="Anotações" class="materialize-textarea" id="notes" data-length="380" ng-model="notes"></textarea>
                 </div>
 
                 <div class="input-field col s3">
-                    <a class="waves-effect waves-light btn blue" ng-click="saveStudent()">Save</a>
+                    <a class="waves-effect waves-light btn blue" ng-click="saveStudent()">Salvar</a>
                 </div>
 
                  <div class="input-field col s3">
-                    <a class="waves-effect waves-red btn blue" ng-click="deleteStudent()">Delete</a>
+                    <a class="waves-effect waves-red btn blue" ng-click="deleteStudent()">Excluir</a>
                 </div>
 
                 <div class="input-field col s3">
-                    <a class="waves-effect waves-light btn blue" ng-click="clearData()">Clear</a>
+                    <a class="waves-effect waves-light btn blue" ng-click="clearData()">Novo</a>
                 </div>
 
                 <div class="input-field col s3">
-                    <a class="waves-effect waves-light btn blue" ng-click="copyAddress()">Copy</a>
+                    <a class="waves-effect waves-light btn blue" ng-click="copyAddress()">Copiar</a>
                 </div>
 
               </div>
@@ -168,7 +168,7 @@
 
         <div class="col s3" id="studentGrades">
 
-                <h5>Courses</h5>
+                <h5>Cursos</h5>
                 <div class="input-field">
                     <select data-ng-model="currentCourse" class="browser-default" ng-change="loadCourseGrades(currentCourse)">
                         <option ng-repeat="course in courses track by $index" ng-value="course">{{course}}</option>
@@ -224,21 +224,21 @@
                 <div ng-controller="loadCourses">
                     <div id="addCourse" class="modal">
                         <div class="modal-content">
-                            <h4>Add a new course to student's record</h4>
+                            <h4>Adicionar novo curso ao registro do aluno</h4>
                             <select data-ng-model="course" class="browser-default" id="newCourse">
                                 <option ng-repeat="course in availableCourses track by $index" ng-value="course.name">{{course.name}}</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addCourse(course)">Save</a>
+                            <a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addCourse(course)">Salvar</a>
                             <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
                         </div>
                     </div>
                     <div class="col s12">
-                        <a data-target="addCourse" class="waves-effect waves-light btn modal-trigger blue" id="addCourse">Add course</a>
+                        <a data-target="addCourse" class="waves-effect waves-light btn modal-trigger blue" id="addCourse">Adicionar curso</a>
                     </div>
                     <div class="col s12">
-                        <a class="waves-effect waves-light btn blue" style="margin-top: 15px" ng-click="getCertInfo()">Print Certificate</a>
+                        <a class="waves-effect waves-light btn blue" style="margin-top: 15px" ng-click="getCertInfo()">Imprimir certificado</a>
                     </div>
                 </div>
 

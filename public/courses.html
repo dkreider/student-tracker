@@ -15,10 +15,10 @@
         <div class="nav-wrapper blue">
           <a href="/" class="brand-logo" id="logo">Student Tracker</a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="index.html"><i class="material-icons left">perm_identity</i>Students</a></li>
-            <li class="active"><a href="courses.html"><i class="material-icons left">assignment</i>Courses</a></li>
-            <li><a href="reports.html"><i class="material-icons left">query_builder</i>Reports</a></li>
-            <li onclick="showHelp()"><a href="#help"><i class="material-icons left">live_help</i>Help</a></li>
+            <li><a href="index.html"><i class="material-icons left">perm_identity</i>Alunos</a></li>
+            <li class="active"><a href="courses.html"><i class="material-icons left">assignment</i>Cursos</a></li>
+            <li><a href="reports.html"><i class="material-icons left">query_builder</i>Relatório</a></li>
+            <li onclick="showHelp()"><a href="#help"><i class="material-icons left">live_help</i>Ajuda</a></li>
           </ul>
         </div>
     </nav>
@@ -32,7 +32,7 @@
 				<div class="col s3" style="margin-top: 30px">
 
 					<div class="input-field">
-						<input type="text" placeholder="Search" class="validate" ng-model="searchTerm" ng-keyup="searchCourses()">
+						<input type="text" placeholder="Pesquisar" class="validate" ng-model="searchTerm" ng-keyup="searchCourses()">
 					</div>
 
 					<div class="collection" ng-repeat="course in searchResults track by $index">
@@ -46,25 +46,25 @@
     				<div class="row">
 
     					<div class="input-field col s2">
-	    					<input placeholder="Course ID" type="text" class="validate" ng-model="courseId" ng-keyup="$event.keyCode === 13 && loadCourse(courseId)">
+	    					<input placeholder="Identificação" type="text" class="validate" ng-model="courseId" ng-keyup="$event.keyCode === 13 && loadCourse(courseId)">
 	    				</div>
 
     					<div class="input-field col s6">
-	    					<input placeholder="Course Name" type="text" class="validate" ng-model="name">
+	    					<input placeholder="Nome do curso" type="text" class="validate" ng-model="name">
 	    				</div>
 
 	    				<div class="input-field col s2">
-	    					<input placeholder="Test amount" type="number" class="validate" ng-model="numberOfTests">
+	    					<input placeholder="Número de provas" type="number" class="validate" ng-model="numberOfTests">
 	    				</div>
 
 	    				<div class="input-field col s10">
-	    					<textarea placeholder="Description" class="materialize-textarea" ng-model="description"></textarea>	    					
+	    					<textarea placeholder="Descrição" class="materialize-textarea" ng-model="description"></textarea>	    					
 	    				</div>
 
 	    				<div class="input-field col s10">
-	    					 <a class="waves-effect waves-light btn blue" ng-click="saveCourse()">Save</a>
-	    					 <a class="waves-effect waves-red btn blue" ng-click="deleteCourse()">Delete</a>
-							 <a class="waves-effect waves-light btn blue" ng-click="clearFields()">Clear</a>
+	    					 <a class="waves-effect waves-light btn blue" ng-click="saveCourse()">Salvar</a>
+	    					 <a class="waves-effect waves-red btn blue" ng-click="deleteCourse()">Excluir</a>
+							 <a class="waves-effect waves-light btn blue" ng-click="clearFields()">Novo</a>
 	    				</div>
 
     				</div>

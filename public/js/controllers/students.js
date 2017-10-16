@@ -227,25 +227,27 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
         } 
 
-        var confirmDelete = confirm("Are you sure you want to delete " + $scope.name);
+        alertify.confirm("Huh?", "Are you sure you want to delete " + $scope.name + "?", function() {
 
-        if (confirmDelete == true) {
+                studentData.deleteStudent($scope.studentId).then(function(response) {
+                    
+                    if (response.data.error) {
 
-            studentData.deleteStudent($scope.studentId).then(function(response) {
+                        Materialize.toast(response.data.error, 2000);
+                        return;
 
-                if (response.data.error) {
+                    }
 
-                    Materialize.toast(response.data.error, 2000);
-                    return;
+                    Materialize.toast("Successfully deleted student!", 2000);
+                    $scope.clearData();
 
-                }
+                });
+            
+            }, function() {
 
-                Materialize.toast("Successfully deleted student!", 2000);
-                $scope.clearData();
+                Materialize.toast($scope.name + " was not deleted.", 2000);
 
             });
-        
-        }
 
     }
 

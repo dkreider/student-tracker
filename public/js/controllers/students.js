@@ -220,9 +220,9 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
     $scope.deleteStudent = function() {
 
-        if ($scope.studentId == null) {
+        if (!$scope.studentId || !$scope.name) {
 
-            Materialize.toast("No student is selected!!!", 2000);
+            Materialize.toast("No student is selected!", 2000);
             return;
 
         } 

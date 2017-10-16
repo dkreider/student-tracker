@@ -118,7 +118,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
     $scope.loadStudent = function(studentId) {
 
-        if (studentId == null) {
+        if (!studentId) {
 
             Materialize.toast("No student id given!", 2000);
             $scope.clearData();
@@ -253,7 +253,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
     $scope.saveStudent = function() {
 
-        if ($scope.studentId == null || $scope.name == "" || $scope.name == null) {
+        if (!$scope.studentId || !$scope.name) {
 
             Materialize.toast("Not enough of info given!", 2000);
             return;

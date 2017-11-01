@@ -242,7 +242,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 var student = new Object();
                 student.studentId = parseInt(response.data.studentId);
                 student.name = $scope.name;
-                student.prisonerId = $scope.prisonerId;
+                student.prisonerId = parseInt($scope.prisonerId);
                 student.wing = parseInt($scope.wing);
                 student.cell = parseInt($scope.cell);
                 student.address1 = $scope.address1; 

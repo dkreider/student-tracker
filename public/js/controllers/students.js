@@ -2,11 +2,11 @@ var studentTracker = angular.module("studentTracker", ['angular-clipboard']);
 
 studentTracker.controller("studentCtrl", function($scope, $http, clipboard, studentData) {
 
-    $scope.selectedCourseGrades = []; // Used to store the grades of the selected course.
-    $scope.newGrades            = []; // Used to store the new grade objects to be saved.
-    $scope.courses              = []; // Used to store student's courses.
-    $scope.grades               = []; // Used to store student's grades.
-    $scope.lastStudent          = 0;  // Used to store last student loaded.    
+    $scope.selectedCourseGrades = [];   // Used to store the grades of the selected course.
+    $scope.selectedCourseDates  = [];   // Used to store the dates for the selected-course's grades.
+    $scope.courses              = [];   // Used to store student's courses.
+    $scope.grades               = [];   // Used to store student's grades.
+    $scope.lastStudent          = 0;    // Used to store last student loaded.    
     $scope.newStudent           = true; // Used to know whether or not we're saving a new student or updating an existing one.
 
     angular.element(document).ready(function() {
@@ -97,12 +97,20 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
         $scope.courses.unshift(courseName);
         $scope.currentCourse = courseName;
         $scope.selectedCourseGrades = [];
+        $scope.selectedCourseDates = [];
 
     }
 
     $scope.loadCourseGrades = function(course) {
 
         $scope.selectedCourseGrades = [];
+        $scope.selectedCourseDates = [];
+
+        if (!course) {
+
+            return;
+
+        }
 
         for (var i = 0; i < $scope.grades.length; i++) {
 
@@ -110,10 +118,16 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
                 $scope.selectedCourseGrades.push($scope.grades[i].grade);
 
+                if ($scope.grades[i].dateAdded) {
+
+                    $scope.selectedCourseDates.push($scope.grades[i].dateAdded);                
+
+                }
+
             }
 
-        }   
-
+        } 
+        
     }
 
     $scope.loadStudent = function(studentId) {
@@ -162,7 +176,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 $scope.currentCourse = response.data.courses[0];
                 $scope.grades = response.data.grades;
                 $scope.loadCourseGrades($scope.currentCourse);
-
+                
                 $('#notes').trigger('autoresize');
 
             });
@@ -211,10 +225,11 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
         $scope.religion = "Indisponível";
         $scope.notes = "";
         $scope.courses = [];
-        $scope.currentCourseGrades = [];
+        $scope.selectedCourseGrades = [];
+        $scope.selectedCourseDates = [];
+        $scope.grades = [];
 
-        $scope.loadNewestStudentId();
-       
+        $scope.loadNewestStudentId();  
 
     }
 
@@ -260,41 +275,27 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
 
         }
 
-        $scope.newGrades = [];
+        // Remove all grades of currently selected course from grade object.
+        $scope.grades = $scope.grades.filter(function(grade){ return grade.name != $scope.currentCourse});
 
         // Add grades of currently selected course.
-
         for (var i = 0; i < $scope.selectedCourseGrades.length; i++) {
 
-            $scope.newGrades.push({
+            var currentDate = new Date().toDateString();
+
+            if ($scope.selectedCourseDates[i]) {
+
+                currentDate = $scope.selectedCourseDates[i];
+
+            } 
+
+            $scope.grades.push({
                 "name":$scope.currentCourse,
-                "grade": $scope.selectedCourseGrades[i]
+                "grade": $scope.selectedCourseGrades[i],
+                "dateAdded": currentDate
             });
 
         }
-
-        // Add grades of un-selected courses.
-
-        for (var i = 0; i < $scope.courses.length; i++) {
-
-            if ($scope.currentCourse != $scope.courses[i]) {
-
-                for (var x = 0; x < $scope.grades.length; x++) {
-
-                    if ($scope.grades[x].name == $scope.courses[i]) {
-
-                        $scope.newGrades.push({
-                            "name":$scope.grades[x].name,
-                            "grade":$scope.grades[x].grade
-                        });
-
-                    }
-
-                }   
-
-            }
-
-        }   
 
         if ($scope.prisonerId && $scope.prisonerId.length == 6) {
 
@@ -335,7 +336,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                 student.religion = $scope.religion;
                 student.notes = $scope.notes;
                 student.courses = $scope.courses;
-                student.grades = $scope.newGrades;
+                student.grades = $scope.grades;
         
                 studentData.saveStudent(student).then(function(saveStudentResponse) {
 
@@ -350,7 +351,6 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
                     $scope.clearData();
         
                 });
-        
     
             });
 
@@ -377,7 +377,7 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
             student.religion = $scope.religion;
             student.notes = $scope.notes;
             student.courses = $scope.courses;
-            student.grades = $scope.newGrades;
+            student.grades = $scope.grades;
     
             studentData.saveStudent(student).then(function(response) {
 
@@ -525,6 +525,5 @@ studentTracker.controller("studentCtrl", function($scope, $http, clipboard, stud
         clipboard.copyText(certInfo);
 
     }
-
 
 });

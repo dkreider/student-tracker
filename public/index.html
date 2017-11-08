@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="css/alertifyjs/default.min.css">
         <link rel="stylesheet" href="css/alertifyjs/alertify.min.css">
 
+        <!-- TippyJs -->
+        <link rel="styleshoot" href="css/tippy/tippy.css">
+
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/index.css"> 
     </head>
@@ -182,49 +185,49 @@
                         <option ng-repeat="course in courses track by $index" ng-value="course">{{course}}</option>
                     </select>
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[0]}}>
                     <input type="number" ng-model="selectedCourseGrades[0]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[1]}}>
                     <input type="number" ng-model="selectedCourseGrades[1]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[2]}}>
                     <input type="number" ng-model="selectedCourseGrades[2]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[3]}}>
                     <input type="number" ng-model="selectedCourseGrades[3]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[4]}}>
                     <input type="number" ng-model="selectedCourseGrades[4]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[5]}}>
                     <input type="number" ng-model="selectedCourseGrades[5]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[6]}}>
                     <input type="number" ng-model="selectedCourseGrades[6]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[7]}}>
                     <input type="number" ng-model="selectedCourseGrades[7]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[8]}}>
                     <input type="number" ng-model="selectedCourseGrades[8]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[9]}}>
                     <input type="number" ng-model="selectedCourseGrades[9]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[10]}}>
                     <input type="number"ng-model="selectedCourseGrades[10]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[11]}}>
                     <input type="number" ng-model="selectedCourseGrades[11]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[12]}}>
                     <input type="number" ng-model="selectedCourseGrades[12]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[13]}}>
                     <input type="number" ng-model="selectedCourseGrades[13]">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s4" title={{selectedCourseDates[14]}}>
                     <input type="number" ng-model="selectedCourseGrades[14]">
                 </div>
 
@@ -291,6 +294,8 @@
 
     <!-- Alertify JS -->
     <script src="js/alertifyjs/alertify.min.js"></script>
+
+    <script src="js/tippy/tippy.min.js"></script>
     
     <!-- Compiled and minified JavaScript -->
 	<script src="js/materialize/materialize.min.js"></script>

@@ -35,8 +35,10 @@ var studentSchema = new mongoose.Schema({
     courses : [String],
     grades : [{
 
+        gradeId: Number,
         name: String,
-        grade: Number
+        grade: Number,
+        dateAdded: String
 
     }]
 

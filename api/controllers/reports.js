@@ -4,6 +4,7 @@
  * 
  */ 
 
+var config = require("../config");
 var mongoose = require("mongoose");
 var Students = mongoose.model("Student");
 
@@ -13,7 +14,7 @@ module.exports.getStats = function(req, res) {
     var activeTotal  = 0;
     var newTotal     = 0;
 
-    Students.find(function(error, success) {
+    Students.find(function(error, students) {
 
         if (error) {
 
@@ -24,15 +25,15 @@ module.exports.getStats = function(req, res) {
 
         } else {
 
-            for (i = 0; i < success.length; i++) {
+            for (i = 0; i < students.length; i++) {
 
                 studentTotal++;
 
-                if (success[i].courses.length > 0 && success[i].grades.length > 0) {
+                if (students[i].status == config.activeStudentsTitle) {
 
                     activeTotal++;
 
-                } else {
+                } else if (students[i].status == config.candidateStudentsTitle) {
 
                     newTotal++;
 

@@ -18,7 +18,7 @@
             <li><a href="index.html"><i class="material-icons left">perm_identity</i>Students</a></li>
             <li class="active"><a href="courses.html"><i class="material-icons left">assignment</i>Courses</a></li>
             <li><a href="reports.html"><i class="material-icons left">query_builder</i>Reports</a></li>
-            <li onclick="showHelp()"><a href="#help"><i class="material-icons left">live_help</i>Help</a></li>
+            <li><a href="#help"><i class="material-icons left">live_help</i>Help</a></li>
           </ul>
         </div>
     </nav>
@@ -69,7 +69,18 @@
 
     				</div>
     				
-    			</form>
+				</form>
+				
+				<!-- Help Modal -->
+                <div id="help" class="modal">
+					<div class="modal-content">
+						<h5>Courses screen</h5>
+						<p>Use this screen to add, update or remove an available course.</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+					</div>
+				</div>
 
     		</div>
     		
@@ -84,6 +95,16 @@
 
 		<!-- AngularJS Controller -->
 		<script type="text/javascript" src="js/controllers/courses.js"></script>
+
+		<script>
+		
+			$(document).ready(function() {
+
+				$('.modal').modal();
+
+			});
+		
+		</script>
 
     </body>
 

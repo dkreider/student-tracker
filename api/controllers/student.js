@@ -18,7 +18,10 @@ module.exports.loadStudent = function(req, res) {
 
     }
 
-    Student.findOne({"studentId":req.query.studentId}, function(err, student) {
+    Student
+    .findOne({"studentId":req.query.studentId})
+    .lean()
+    .exec(function(err, student) {
 
         if (err) {
 

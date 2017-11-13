@@ -222,7 +222,12 @@ module.exports.studentSearch = function(req, res) {
 
     }
 
-    Student.find({$text: {$search: req.query.searchTerm}}, function(err, results) {
+    Student
+    .find({$text: {$search: req.query.searchTerm}})
+    .lean()
+    .select("studentId")
+    .select("name")
+    .exec(function(err, results) {
 
         if (err) {
 

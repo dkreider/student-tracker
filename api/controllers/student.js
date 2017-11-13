@@ -186,7 +186,10 @@ module.exports.deleteStudent = function(req, res) {
 
 module.exports.newStudentId = function(req, res) {
 
-    Student.find(function(error, success) {
+    Student
+    .find()
+    .select("studentId")
+    .exec(function(error, students) {
 
         if (error) {
 
@@ -195,19 +198,9 @@ module.exports.newStudentId = function(req, res) {
 
         } else {
 
-            var studentId = 0;
-
-            for (i = 0; i < success.length; i++) {
-
-                if (success[i].studentId > studentId) {
-
-                    studentId = success[i].studentId;
-
-                }
-
-            }
-
-            studentId++;
+            var lastStudent = students[students.length - 1];
+            var studentId = lastStudent.studentId + 1;
+            
             res.json({"studentId" : studentId});
         }
 

@@ -1,8 +1,8 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 
 require ("./api/data/db.js");
-var router = require("./api/routes")
+const router = require("./api/routes")
 
 var app = express();
 app.use(bodyParser.urlencoded({extended:false}))

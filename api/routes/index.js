@@ -1,10 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var ctrlStudent = require("../controllers/student");
-var ctrlCourses = require("../controllers/courses");
-var ctrlAddress = require("../controllers/address");
-var ctrlReports = require("../controllers/reports");
+const ctrlStudent = require("../controllers/student");
+const ctrlCourses = require("../controllers/courses");
+const ctrlAddress = require("../controllers/address");
+const ctrlReports = require("../controllers/reports");
 
 router
     .route("/student")

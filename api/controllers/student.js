@@ -4,8 +4,8 @@
  * 
  */ 
 
-var mongoose = require("mongoose");
-var Student = mongoose.model("Student");
+const mongoose = require("mongoose");
+const Student = mongoose.model("Student");
 
 module.exports.loadStudent = function(req, res) {
 

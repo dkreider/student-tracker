@@ -4,8 +4,8 @@
  * 
  */ 
 
-var mongoose = require("mongoose");
-var Courses = mongoose.model("Courses");
+const mongoose = require("mongoose");
+const Courses = mongoose.model("Courses");
 
 module.exports.loadCourse = function(req, res) {
 
@@ -176,7 +176,7 @@ module.exports.deleteCourse = function(req, res) {
 
 module.exports.newCourseId = function(req, res) {
 
-    Courses.find(function(error, success) {
+    Courses.find(function(error, courses) {
 
         if (error) {
 
@@ -189,11 +189,11 @@ module.exports.newCourseId = function(req, res) {
 
             var courseId = 0;
 
-            for (i = 0; i < success.length; i++) {
+            for (let course of courses) {
 
-                if (success[i].courseId > courseId) {
+                if (course.courseId > courseId) {
 
-                    courseId = success[i].courseId;
+                    courseId = course.courseId;
 
                 }
 

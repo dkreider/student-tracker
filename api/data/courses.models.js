@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var courseSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
 
     courseId : {
         min: 0,

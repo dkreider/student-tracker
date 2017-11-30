@@ -4,9 +4,9 @@
  * 
  */ 
 
-var config = require("../config");
-var mongoose = require("mongoose");
-var Students = mongoose.model("Student");
+const config = require("../config");
+const mongoose = require("mongoose");
+const Students = mongoose.model("Student");
 
 module.exports.getStats = function(req, res) {
 
@@ -25,15 +25,15 @@ module.exports.getStats = function(req, res) {
 
         } else {
 
-            for (i = 0; i < students.length; i++) {
+            for (let student of students) {
 
                 studentTotal++;
 
-                if (students[i].status == config.activeStudentsTitle) {
+                if (student.status == config.activeStudentsTitle) {
 
                     activeTotal++;
 
-                } else if (students[i].status == config.candidateStudentsTitle) {
+                } else if (student.status == config.candidateStudentsTitle) {
 
                     newTotal++;
 

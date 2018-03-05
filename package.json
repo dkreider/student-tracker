@@ -10,10 +10,10 @@
   "author": "Daniel Kreider",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "mongodb": "^2.2.30",
-    "mongoose": "^4.10.4",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.35",
+    "mongoose": "^4.13.11",
     "node-correios": "^2.1.1"
   },
   "repository": {
